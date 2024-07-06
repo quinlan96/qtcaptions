@@ -40,7 +40,7 @@ const initStream = async () => {
 window.addEventListener('online', async () => {
     console.log('Browser back online')
     const retryPolicy = retry(handleAll, {
-        maxAttempts: 20,
+        maxAttempts: 30,
         backoff: new ExponentialBackoff({
             initialDelay: 500,
             maxDelay: 120000,
