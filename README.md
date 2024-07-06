@@ -1,15 +1,15 @@
-# qtplayer
+# QTCaptions
 
-To install dependencies:
+To start services:
 
 ```bash
-bun install
+docker compose up -d
 ```
 
-To run:
+To build :
 
 ```bash
-bun run src/index.js
+bun build ./src/app.js --outdir ./public/build
 ```
 
 This project was created using `bun init` in bun v1.1.18. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
