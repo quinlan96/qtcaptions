@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Captions | Queensland Theatre</title> 
+    <meta charset="utf-8">
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- possible content values: default, black or black-translucent -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
+    <link rel="mask-icon" href="/images/favicons/safari-pinned-tab.svg" color="#000000">
+    <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+    <meta name="viewport" content="width=device-width; initial-scale=1; viewport-fit=cover">
+    <style>
+        @font-face {
+            font-family: QT;
+            src: url(/fonts/QT-BoldCondesned_1.woff2);
+            font-weight: 700;
+            font-style: normal
+        }
+
+        body{
+            background: rgba(0, 0, 0, .9) !important;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .nav {
+            background-image: none;
+            background: black;
+            color: white;
+            font-family: QT;
+            height: 80px;
+            display: flex;
+            align-items: center;
+        } 
+
+        .nav a {
+            padding-top: 8px;
+            padding-left: 28px;
+            font-size: 2.2rem;
+            color: white;
+            line-height: 1;
+        }
+
+        .wrapper {
+            width: 100vw;
+            height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+        }
+
+        #rtc_media_player {
+            width: 100%;
+            max-height: 100%;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="text/javascript" src="build/app.js"></script>
+    <script type="text/javascript" src="js/adapter-7.4.0.min.js"></script>
+    <script type="text/javascript" src="js/srs.sdk.js"></script>
+    <script type="text/javascript" src="js/winlin.utility.js"></script>
+</head>
+<body>
+<div class="nav">
+    <a class="brand" href="#" target="_blank">Queensland Theatre</a>
+</div>
+<div class="wrapper">
+    <video id="rtc_media_player" controls autoplay muted></video>
+</div>
+<script type="text/javascript">
+    /*const STREAM_URL = 'http://10.0.0.67:2022/rtc/v1/whep/?app=live&stream=livestream';
+    var sdk = null; // Global handler to do cleanup when republishing.
+
+    const initStream = () => {
+        // Close RTCPeerConnection if open
+        if (sdk) {
+            sdk.close();
+        }
+
+        sdk = new SrsRtcWhipWhepAsync();
+
+        // User should set the stream when publish is done, @see https://webrtc.org/getting-started/media-devices
+        // However SRS SDK provides a consist API like https://webrtc.org/getting-started/remote-streams
+        document.getElementById('rtc_media_player').srcObject = sdk.stream;
+
+        // Optional callback, SDK will add track to stream.
+        // sdk.ontrack = function (event) { console.log('Got track', event); sdk.stream.addTrack(event.track); };
+
+        // For example: webrtc://r.ossrs.net/live/livestream
+        sdk.play(STREAM_URL).then(function(session){
+            console.log(`SRS session established [${session.sessionid}]`);
+        }).catch(function (reason) {
+            sdk.close();
+            console.error(reason);
+        });
+    };
+
+    window.addEventListener('online', () => {
+        if (sdk && sdk.pc.iceConnectionState === 'failed') {
+            console.log('Restarting ice');
+            try {
+                initStream();
+            } catch (e) {
+                setTimeout(() => {
+                    initStream();
+                }, 10000);
+            }
+        }
+    });
+    window.addEventListener('load', () => {
+        initStream()
+    });*/
+</script>
+</body>
+</html>
+

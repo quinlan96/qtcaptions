@@ -1,0 +1,15 @@
+{
+  "name": "Queensland Theatre Captions",
+  "short_name": "QTCaptions",
+  "start_url": "/?standalone=true",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "Queensland Theatre Subtitles",
+  "icons": [
+    {
+      "src": "images/favicons/apple-touch-icon.png",
+      "sizes": "140x140",
+      "type": "image/png"
+    }
+  ]
+}

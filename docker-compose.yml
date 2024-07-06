@@ -1,0 +1,21 @@
+services:
+  oryx:
+    image: ossrs/oryx:5
+    ports:
+      - "2022:2022"
+      - "2443:2443"
+      - "1935:1935"
+      - "8000:8000/udp"
+      - "10080:10080/udp"
+    environment:
+      - CANDIDATE=10.0.0.67
+    volumes:
+      - /home/robbie/projects/freelance/oryx/data:/data
+
+  frontend:
+    image: caddy:2
+    ports:
+      - "9999:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./public:/app

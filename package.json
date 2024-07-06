@@ -1,0 +1,14 @@
+{
+  "name": "qtcaptions",
+  "module": "src/app.js",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "cockatiel": "^3.1.3"
+  }
+}
