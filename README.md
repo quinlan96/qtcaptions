@@ -6,7 +6,7 @@ To start services:
 docker compose up -d
 ```
 
-To build :
+To build frontend JS:
 
 ```bash
 bun build ./src/app.js --outdir ./public/build

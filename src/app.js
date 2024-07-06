@@ -16,6 +16,14 @@ const initStream = async () => {
 
     sdk = SrsRtcWhipWhepAsync();
 
+    sdk.pc.addEventListener('iceconnectionstatechange', (e) => {
+        if (sdk.pc.iceConnectionState === 'failed') {
+            setTimeout(async () => {
+                await initStream();
+            }, 2000);
+        }
+    });
+
     // User should set the stream when publish is done, @see https://webrtc.org/getting-started/media-devices
     // However SRS SDK provides a consist API like https://webrtc.org/getting-started/remote-streams
     document.getElementById('rtc_media_player').srcObject = sdk.stream;

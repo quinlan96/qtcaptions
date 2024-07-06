@@ -366,6 +366,13 @@ var initStream = async () => {
     sdk.close();
   }
   sdk = SrsRtcWhipWhepAsync();
+  sdk.pc.addEventListener("iceconnectionstatechange", (e) => {
+    if (sdk.pc.iceConnectionState === "failed") {
+      setTimeout(async () => {
+        await initStream();
+      }, 2000);
+    }
+  });
   document.getElementById("rtc_media_player").srcObject = sdk.stream;
   const session = await sdk.play(STREAM_URL);
   console.log(`SRS session established [${session.sessionid}]`);
