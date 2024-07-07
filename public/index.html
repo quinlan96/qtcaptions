@@ -24,6 +24,10 @@
             font-style: normal
         }
 
+        :root {
+            --navbar-height: 80px;
+        }
+
         body{
             background: rgba(0, 0, 0, .9) !important;
             width: 100vw;
@@ -35,7 +39,7 @@
             background: black;
             color: white;
             font-family: QT;
-            height: 80px;
+            height: var(--navbar-height);
             display: flex;
             align-items: center;
         } 
@@ -50,7 +54,7 @@
 
         .wrapper {
             width: 100vw;
-            height: calc(100vh - 80px);
+            height: calc(100vh - var(--navbar-height));
             display: flex;
             align-items: center;
         }
@@ -61,10 +65,7 @@
         }
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script type="text/javascript" src="build/app.js"></script>
-    <script type="text/javascript" src="js/adapter-7.4.0.min.js"></script>
-    <script type="text/javascript" src="js/srs.sdk.js"></script>
-    <script type="text/javascript" src="js/winlin.utility.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
 </head>
 <body>
 <div class="nav">
@@ -73,50 +74,6 @@
 <div class="wrapper">
     <video id="rtc_media_player" controls autoplay muted></video>
 </div>
-<script type="text/javascript">
-    /*const STREAM_URL = 'http://10.0.0.67:2022/rtc/v1/whep/?app=live&stream=livestream';
-    var sdk = null; // Global handler to do cleanup when republishing.
-
-    const initStream = () => {
-        // Close RTCPeerConnection if open
-        if (sdk) {
-            sdk.close();
-        }
-
-        sdk = new SrsRtcWhipWhepAsync();
-
-        // User should set the stream when publish is done, @see https://webrtc.org/getting-started/media-devices
-        // However SRS SDK provides a consist API like https://webrtc.org/getting-started/remote-streams
-        document.getElementById('rtc_media_player').srcObject = sdk.stream;
-
-        // Optional callback, SDK will add track to stream.
-        // sdk.ontrack = function (event) { console.log('Got track', event); sdk.stream.addTrack(event.track); };
-
-        // For example: webrtc://r.ossrs.net/live/livestream
-        sdk.play(STREAM_URL).then(function(session){
-            console.log(`SRS session established [${session.sessionid}]`);
-        }).catch(function (reason) {
-            sdk.close();
-            console.error(reason);
-        });
-    };
-
-    window.addEventListener('online', () => {
-        if (sdk && sdk.pc.iceConnectionState === 'failed') {
-            console.log('Restarting ice');
-            try {
-                initStream();
-            } catch (e) {
-                setTimeout(() => {
-                    initStream();
-                }, 10000);
-            }
-        }
-    });
-    window.addEventListener('load', () => {
-        initStream()
-    });*/
-</script>
 </body>
 </html>
 

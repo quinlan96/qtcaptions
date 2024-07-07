@@ -1,11 +1,14 @@
 import {
     retry,
     handleAll,
-    ConstantBackoff,
     ExponentialBackoff,
 } from 'cockatiel';
+// Shim library to insulate apps from spec changes and browser differences in WebRTC
+import adapter from 'webrtc-adapter';
+import { SrsRtcWhipWhepAsync } from './lib/srs.sdk';
+import './lib/winlin.utility';
 
-const STREAM_URL = 'http://10.0.0.67:2022/rtc/v1/whep/?app=live&stream=livestream';
+const STREAM_URL = 'http://192.168.100.2:2022/rtc/v1/whep/?app=live&stream=livestream';
 let sdk = null;
 
 const initStream = async () => {
@@ -14,9 +17,11 @@ const initStream = async () => {
         sdk.close();
     }
 
+    // Initialize RTCPeerConnection and return stream SDK
     sdk = SrsRtcWhipWhepAsync();
 
     sdk.pc.addEventListener('iceconnectionstatechange', (e) => {
+        // Listen for ICE connection state failed event and attempt to reconnect stream 
         if (sdk.pc.iceConnectionState === 'failed') {
             setTimeout(async () => {
                 await initStream();
@@ -37,21 +42,23 @@ const initStream = async () => {
     console.log(`SRS session established [${session.sessionid}]`);
 };
 
+// window.online event is triggered when the browser reconnects to the internet
 window.addEventListener('online', async () => {
     console.log('Browser back online')
+
+    // Retry policy will execute a section of code and handle all errors until max attempts is reached
     const retryPolicy = retry(handleAll, {
         maxAttempts: 30,
+        // Backoff defines delay between retries, which increases exponentially between initial and max
         backoff: new ExponentialBackoff({
             initialDelay: 500,
             maxDelay: 120000,
         }),
-    });
-
-    retryPolicy.onRetry((reason) => {
-        console.error(reason);
-    });
+        // Error will be swallowed if we don't explicitly log it
+    }).onRetry(reason => console.error(reason));
 
     await retryPolicy.execute(async () => {
+        // Don't attempt to re-initialise healthy stream
         if (!sdk || sdk.pc.iceConnectionState !== 'connected') {
             console.log('Reconnecting to stream');
             await initStream();
@@ -59,6 +66,7 @@ window.addEventListener('online', async () => {
     });
 });
 
+// Load the stream on the initial page load
 window.addEventListener('load', async () => {
     await initStream()
 });

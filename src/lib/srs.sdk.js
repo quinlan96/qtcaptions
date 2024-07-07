@@ -17,7 +17,7 @@ SrsError.prototype.constructor = SrsError;
 
 // Depends on adapter-7.4.0.min.js from https://github.com/webrtc/adapter
 // Async-awat-prmise based SRS RTC Publisher.
-function SrsRtcPublisherAsync() {
+export function SrsRtcPublisherAsync() {
     var self = {};
 
     // https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
@@ -272,7 +272,7 @@ function SrsRtcPublisherAsync() {
 
 // Depends on adapter-7.4.0.min.js from https://github.com/webrtc/adapter
 // Async-await-promise based SRS RTC Player.
-function SrsRtcPlayerAsync() {
+export function SrsRtcPlayerAsync() {
     var self = {};
 
     // @see https://github.com/rtcdn/rtcdn-draft
@@ -521,7 +521,7 @@ function SrsRtcPlayerAsync() {
 
 // Depends on adapter-7.4.0.min.js from https://github.com/webrtc/adapter
 // Async-awat-prmise based SRS RTC Publisher by WHIP.
-function SrsRtcWhipWhepAsync() {
+export function SrsRtcWhipWhepAsync() {
     var self = {};
 
     // https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
@@ -680,7 +680,7 @@ function SrsRtcWhipWhepAsync() {
 
 // Format the codec of RTCRtpSender, kind(audio/video) is optional filter.
 // https://developer.mozilla.org/en-US/docs/Web/Media/Formats/WebRTC_codecs#getting_the_supported_codecs
-function SrsRtcFormatSenders(senders, kind) {
+export function SrsRtcFormatSenders(senders, kind) {
     var codecs = [];
     senders.forEach(function (sender) {
         var params = sender.getParameters();
