@@ -54,8 +54,10 @@ window.addEventListener('online', async () => {
             initialDelay: 500,
             maxDelay: 120000,
         }),
-        // Error will be swallowed if we don't explicitly log it
-    }).onRetry(reason => console.error(reason));
+    });
+
+    // Error will be swallowed if not explicitly logged
+    retryPolicy.onRetry(console.error);
 
     await retryPolicy.execute(async () => {
         // Don't attempt to re-initialise healthy stream

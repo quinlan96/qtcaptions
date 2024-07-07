@@ -4585,7 +4585,7 @@ AsyncRefresh2.prototype.request = function(timeout) {
 };
 
 // src/app.js
-var STREAM_URL = "http://10.0.0.67:2022/rtc/v1/whep/?app=live&stream=livestream";
+var STREAM_URL = "http://192.168.100.2:2022/rtc/v1/whep/?app=live&stream=livestream";
 var sdk = null;
 var initStream = async () => {
   if (sdk) {
@@ -4611,7 +4611,8 @@ window.addEventListener("online", async () => {
       initialDelay: 500,
       maxDelay: 120000
     })
-  }).onRetry((reason) => console.error(reason));
+  });
+  retryPolicy.onRetry(console.error);
   await retryPolicy.execute(async () => {
     if (!sdk || sdk.pc.iceConnectionState !== "connected") {
       console.log("Reconnecting to stream");
