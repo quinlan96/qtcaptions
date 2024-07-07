@@ -640,6 +640,7 @@ export function SrsRtcWhipWhepAsync() {
         self.stream.addTrack(event.track);
     };
 
+    // https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Perfect_negotiation
     self.pc = new RTCPeerConnection(null);
 
     self.pc.addEventListener('iceconnectionstatechange', (e) => {
