@@ -8,14 +8,15 @@ services:
       - "8000:8000/udp"
       - "10080:10080/udp"
     environment:
-      - CANDIDATE=10.0.0.67
+      # https://ossrs.net/lts/en-us/docs/v4/doc/webrtc#config-candidate
+      - CANDIDATE=192.168.100.2
     volumes:
-      - /home/robbie/projects/freelance/oryx/data:/data
+      - $HOME/data:/data
 
   frontend:
     image: caddy:2
     ports:
-      - "9999:80"
+      - "80:80"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - ./public:/app
